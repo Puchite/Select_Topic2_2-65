@@ -1,0 +1,60 @@
+.Head{
+  text-align:center;
+  padding:20px;
+  size:100%;
+  background:rgb(255, 200, 159);
+
+}
+.Head h1{
+
+  font-size:50px;
+
+}
+/* .form-input{
+  justify-content: center;
+  align-items: center;
+
+} */
+.form-input-div{
+  border-radius:3px;
+  border:1px solod black;
+  box-shadow: 2px 2px 3px rgba(0,0,0,1);
+  background:rgb(220, 157, 110);
+  margin:20px;
+  padding:5px;
+  width: 350px;
+
+}
+.form-input-div div{
+  margin:15px;
+}
+.form-input-div label{
+  color: rgb(255, 255, 255);
+}
+.form-input-div h4{
+  /* margin:15px; */
+  justify-content: center;
+  text-align: center;
+}
+.form-input-div div input{
+  margin:2px 0px 5px 15px;
+  width: 60%
+}
+.button-submit{
+  /* margin:2px 0px 5px 15px; */
+  /* width: 60%; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding:5px;
+
+}
+.button-submit button{
+  /* margin:2px 0px 5px 15px; */
+  /* width: 60%; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding:7px;
+
+}
