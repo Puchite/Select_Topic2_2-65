@@ -1,0 +1,17 @@
+<form class="form-input" [formGroup]="loginForm">
+  <div class="form-input-div">
+    <div class="form-login-box">
+        <label>Username</label>
+        <input formControlName="Username" type="text" placeholder="Enter Username">
+    </div>
+    <div class="form-password-box">
+      <label>Password</label>
+      <input formControlName="Username" type="password" placeholder="Enter Password">
+    </div>
+
+    <div class="button-submit">
+      <button (click)="onSubmit()" name="button" type="submit" value="submit"><a routerLink="Home">Login</a> Login </button>
+
+    </div>
+  </div>
+</form>
