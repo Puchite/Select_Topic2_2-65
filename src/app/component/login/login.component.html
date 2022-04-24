@@ -1,0 +1,36 @@
+<div ng-init="myVar = 'Head.jpeg'" class="Head">
+  <!-- <img ng-src="{myVar}" alt="head"> -->
+  <h1>ระบบสารสนเทศเพื่องานทะเบียนนักศึกษา</h1>
+</div>
+<!-- <img src="./Head.jpeg"> -->
+<form class="form-input" [formGroup]="loginForm">
+
+  <div class="form-input-div">
+    <h4>กรุณาป้อนชื่อผู้ใช้งานและรหัสผ่าน</h4>
+    <div class="form-login-box">
+        <label>Username</label>
+        <input formControlName="Username" type="text" placeholder="Enter Username">
+    </div>
+    <div class="form-password-box">
+      <label>Password</label>
+      <input formControlName="Password" type="password  " placeholder="Enter Password">
+    </div>
+    <div>
+      {{logindata.username}}
+    </div>
+    <div class="button-submit">
+
+      <button (click)="onSubmit(loginForm)" name="button" type="submit" value="submit">Login</button>
+
+    </div>
+  </div>
+  <!-- <br/> -->
+  <h4>
+    การเข้าสู่ระบบสารสนเทศเพื่องานทะเบียนนักศึกษา (KRIS)<br/>
+    <h5>
+      1.ป้อนเลขรหัสนักศึกษา 13 หลักตัวลงช่อง Username<br/>
+      2.ป้อนรหัสผ่านประจำตัวลงในช่อง Password <br/>
+      3.คลิกปุ่ม Login เพื่อเข้าใช้งานระบบ
+    </h5>
+  </h4>
+</form>

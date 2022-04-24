@@ -1,0 +1,76 @@
+
+.Head{
+  /* background-image: url('./Head.jpeg');
+  width: 100%;
+  height: 100%; */
+  text-align:center;
+  padding:20px;
+  size:100%;
+  border-radius:3px;
+  border:1px solod black;
+  box-shadow: 2px 2px 3px rgba(0,0,0,1);
+  background:rgb(255, 200, 159);
+
+}
+.Head h1{
+
+  font-size:50px;
+
+}
+.form-input{
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+.form-input-div{
+
+  justify-content:center;
+  align-items: center;
+  border-radius:3px;
+  border:1px solod black;
+  box-shadow: 3px 3px 5px rgba(0,0,0,1);
+  background:rgb(221, 170, 131);
+  /* top:20px; */
+  margin:100px 50px 50px 50px;
+  padding:5px;
+  width: 350px;
+
+}
+.form-input-div div{
+  margin:15px;
+}
+.form-input-div label{
+  color: rgb(0, 0, 0);
+}
+.form-input-div h4{
+  /* margin:15px; */
+  justify-content: center;
+  text-align: center;
+}
+.form-input-div div input{
+  margin:2px 0px 5px 15px;
+  width: 60%
+}
+
+.form-input-div div input::placeholder{
+  color:transparent;
+
+}
+.button-submit{
+  /* margin:2px 0px 5px 15px; */
+  /* width: 60%; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding:5px;
+
+}
+.button-submit button{
+  /* margin:2px 0px 5px 15px; */
+  /* width: 60%; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding:2px 7px;
+
+}
