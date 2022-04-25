@@ -37,7 +37,7 @@
 
 }
 .form-input-div div{
-  margin:15px;
+  margin:10px;
 }
 .form-input-div label{
   color: rgb(0, 0, 0);
@@ -51,7 +51,10 @@
   margin:2px 0px 5px 15px;
   width: 60%
 }
-
+.state{
+  color:red;
+  text-align: center;
+}
 .form-input-div div input::placeholder{
   color:transparent;
 
