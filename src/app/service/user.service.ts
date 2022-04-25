@@ -16,10 +16,8 @@ export class UserService {
 
   login(username: string, password: string)
   {
-    console.log(`${environment.apiUrl}/userdata`)
-    this.http.get<any>(`${environment.apiUrl}/userdata`).pipe(map(data => {
-      return data
-    }))
+    console.log(`${environment.apiUrl}/userdata/`)
+    return this.http.get(`${environment.apiUrl}/userdata/`)
 
 
   }
