@@ -11,7 +11,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { DropComponent } from './component/drop/drop.component';
 import { CheckRegisterComponent } from './component/check-register/check-register.component';
 import { HomeRoutingModule } from './component/home/home-routing.module';
-
+// import {HttpClientModule}
 
 @NgModule({
   declarations: [

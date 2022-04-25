@@ -14,13 +14,4 @@ export class UserService {
 
   }
 
-  login(username: string, password: string)
-  {
-    console.log(`${environment.apiUrl}/userdata`)
-    this.http.get<HttpClient>(`${environment.apiUrl}/userdata`).subscribe(data => {
-      console.log(data)
-    })
 
-
-  }
-}
