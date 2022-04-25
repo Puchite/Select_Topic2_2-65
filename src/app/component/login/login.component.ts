@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {Loginf} from "./loginf"
 import {Router} from "@angular/router"
+import { UserService } from 'src/app/service/user.service';
 
 // import { LoginService } from '../Service/loginservice.service';
 @Component({
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit {
   logindata!: Loginf;
   loginForm!: FormGroup;
   loginForms:Array<Loginf>  =[];
-  state:string =""
-  constructor(private router:Router, private fb:FormBuilder,private loginservice:LoginService) {
+
+  constructor(private router:Router, private fb:FormBuilder,private loginservice:LoginService, private userservice:UserService) {
     this.logindata = new Loginf("6204062616103","1129700214653")
     this.loginForm = this.fb.group({
       Username: [''],
@@ -30,18 +31,11 @@ export class LoginComponent implements OnInit {
   onSubmit(f:FormGroup){
     //Bug cannot find username
     this.logindata.username = f.get('Username')?.value
-    if(f.get('Username')?.value==""){
-      this.state = "please enter your username"
-    }
-    else if(f.get('Password')?.value==""){
-      this.state = "please enter your password"
-    }else {
-      this.router.navigate(['/Home'])
-
-    }
-    // console.log(f.get('Username')?.value)
-    // console.log(f.get('Password')?.value)
-    // this.router.navigate(['/Home'])
+    this.logindata.password = f.get('Password')?.value
+    console.log(f.get('Username')?.value)
+    console.log(f.get('Password')?.value)
+    console.log(this.userservice.login(this.logindata.username, this.logindata.password))
+    this.router.navigate(['/Home'])
   }
 
 }
