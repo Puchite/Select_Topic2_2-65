@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
     this.logindata.password = f.get('Password')?.value
     console.log(f.get('Username')?.value)
     console.log(f.get('Password')?.value)
-    console.log(this.userservice.login(this.logindata.username, this.logindata.password))
+    let data:any = (this.userservice.login(this.logindata.username, this.logindata.password))
+    console.log(data)
     this.router.navigate(['/Home'])
   }
 
