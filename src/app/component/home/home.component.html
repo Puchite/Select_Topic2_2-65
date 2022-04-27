@@ -1,21 +1,19 @@
-<div class="header">
-  <h2>ระบบสาระสนเทศเพื่องานทะเบียนนักศึกษา</h2>
-  <p>ผู้ใช้งาน {{user.name}}</p>
-  <p>{{dateTH}}</p>
-</div>
+<div class="overall_font">
+  <div>
+    <h2 class="header">ระบบสาระสนเทศเพื่องานทะเบียนนักศึกษา</h2>
+    <p class="header_text">ผู้ใช้งาน {{ this.Data.Name }} {{ dateTH }}</p>
+  </div>
 
-<div class="nav">
-  <nav>
-    <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
-    <li><a routerLink="Drop">ถอนวิชาเรียน</a></li>
-    <li><a routerLink="CheckRegister">ผลการลงทะเบียน</a></li>
-    <li><a routerLink="">ออกจากระบบ</a></li>
+  <div class="nav">
+    <nav class="background_nav">
+      <h3>การลงทะเบียนเรียน</h3>
+      <div class="background_nav_text">
+        <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
+        <li><a routerLink="Drop">ถอนวิชาเรียน</a></li>
+        <li><a routerLink="CheckRegister">ผลการลงทะเบียน</a></li>
+        <li><a routerLink="">ออกจากระบบ</a></li>
+      </div>
     </nav>
-
     <router-outlet></router-outlet>
+  </div>
 </div>
-
-
-
-
-
