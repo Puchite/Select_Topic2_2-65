@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet');
+
+.overall_font{
+  font-family: 'Mitr', sans-seri;
+}
+
+.header{
+  background-color: darksalmon;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+}
+
+.nav {
+  display: flex;
+}
+
+.background_nav {
+  background-color: darksalmon;
+  padding: 10px;
+}
+
+.background_nav_text {
+  background-color: burlywood;
+}
+
+li{
+  list-style: none;
+  text-align: center;
+}

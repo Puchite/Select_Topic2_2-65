@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
 
@@ -8,22 +9,32 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  date!:Date;
-  dateTH!:string;
-  user: User;
+
+  date!: Date;
+  dateTH!: string;
+  user!: any;
+
+  userlist: Array<User> = [];
+
+  Data: any;
 
   constructor(private userservice: UserService) {
     this.user = this.userservice.userValue;
+
+    this.Data = this.user.reduce(
+      (obj: any, item: { Student_ID: any; }) => Object.assign(obj, { [item.Student_ID]: item.Student_ID })
+    )
+    console.log(this.Data);
   }
 
   ngOnInit(): void {
-    console.log(this.user)
+    // console.log(this.userlist[0]);
+    console.log(this.userlist);
     this.date = new Date()
-    this.dateTH = this.date.toLocaleDateString('th-TH',{
+      this.dateTH = this.date.toLocaleDateString('th-TH', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     })
   }
-
 }

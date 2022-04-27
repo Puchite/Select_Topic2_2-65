@@ -18,7 +18,7 @@ export class UserService {
   }
 
   public get userValue(): User{
-    return this.userSubject.value;
+    return this.userSubject.getValue();
   }
 
   login(username:string, password:string)
@@ -34,13 +34,13 @@ export class UserService {
     //   console.log('Login Failed invalid username or password');
     //   return false;
     // })
-    
-    console.log(`${environment.apiUrl}/userdata/${username}/${password}`)
+
+    // console.log(`${environment.apiUrl}/userdata/${username}/${password}`)
+
     return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
     .pipe(map(user => {
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
     }))
-
   }
 }
