@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
           next: () => {
             console.log("User valid")
             const returnUrl = this.route.snapshot.queryParams['/Home']
+            this.userservice.getCourse();
             this.router.navigate(['/Home'])
           },
           error: error =>{
