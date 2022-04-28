@@ -7,6 +7,7 @@ import { UserService } from 'src/app/service/user.service';
 import {HttpClient} from '@angular/common/http'
 import { first } from 'rxjs/operators';
 
+
 // import { LoginService } from '../Service/loginservice.service';
 @Component({
   selector: 'app-login',
@@ -39,42 +40,42 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f:FormGroup){
-    //Bug cannot find username
     this.logindata.username = f.get('Username')?.value
     this.logindata.password = f.get('Password')?.value
 
 
     // console.log(this.Data)
-  //   if(f.get('Username')?.value==""){
-  //     this.state = "please enter your username"
-  //   }
-  //   else if(f.get('Password')?.value==""){
-  //     this.state = "please enter your password"
-  //   }else {
-  //     for(let i = 0;i<this.Data.length;i++){
-  //       if(this.logindata.username === this.Data[i].Student_ID&&this.logindata.password===this.Data[i].Password){
-  //           this.router.navigate(['/Home'])
-  //       }
-  //       else{
-  //         this.state = "Incorrect username or password.Please try again."
-  //       }
-  //     }
-
-  //   // this.router.navigate(['/Home'])
-  //  }
-
-        this.userservice.login(this.logindata.username, this.logindata.password).pipe(first()).subscribe({
-          next: () => {
-            console.log("User valid")
+    if(f.get('Username')?.value==""){
+      this.state = "please enter your username"
+    }
+    else if (f.get('Password')?.value == "") {
+      this.state = "please enter your password"
+    } else {
+      this.userservice.login(this.logindata.username, this.logindata.password).pipe(first()).subscribe({
+        next: () => {
+          // console.log("User valid")
+          if (this.userservice.state == true) {
+            console.log("true")
             const returnUrl = this.route.snapshot.queryParams['/Home']
             this.userservice.getCourse();
             this.router.navigate(['/Home'])
-          },
-          error: error =>{
-
           }
+          else {
+            this.state = "Incorrect username or password.Please try again."
+          }
+
+        },
+        error: error => {
+
         }
-        )
+      }
+      )
+    }
+
+    // this.router.navigate(['/Home'])
+  //  }
+
+
 
 
   }
