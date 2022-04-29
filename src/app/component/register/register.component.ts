@@ -59,9 +59,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-
-=======
     // let Table = document.createElement('table');
     // let Header = document.createElement('tr');
 
@@ -86,7 +83,6 @@ export class RegisterComponent implements OnInit {
 
     //   Table.appendChild(Row);
     // })
->>>>>>> 126ed19973d920e5b06ce2ebbc032bec9e27edb2
   }
 
   GetData(ID : string) : void {
