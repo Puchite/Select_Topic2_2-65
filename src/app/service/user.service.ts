@@ -2,7 +2,7 @@ import { User } from './../models/user';
 import { Course } from '../models/course';
 import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
@@ -39,8 +39,9 @@ export class UserService {
       map(user => {
       if(typeof(user)==="object"){
         this.state=true;
-        console.log("true")
+
         localStorage.setItem('user', JSON.stringify(user));
+        console.log(localStorage.getItem('user'))
         this.userSubject.next(user);
       }
       else{
@@ -48,6 +49,15 @@ export class UserService {
         this.state=false
       }
     }))
+  }
+
+  logout()
+  {
+    localStorage.removeItem('user');
+    localStorage.removeItem('course');
+    this.userSubject.next(null!);
+    this.courseSubject.next(null!);
+    this.router.navigate(['']);
   }
 
   getCourse()
