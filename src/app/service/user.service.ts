@@ -43,7 +43,7 @@ export class UserService {
         this.state=true;
 
         localStorage.setItem('user', JSON.stringify(user));
-        console.log(localStorage.getItem('user'))
+        // console.log(localStorage.getItem('user'))
         this.userSubject.next(user);
       }
       else{
@@ -71,7 +71,7 @@ export class UserService {
     .pipe(
 
       map(course => {
-      console.log(course)
+      // console.log(JSON.stringify(course))
 
       localStorage.setItem('course', JSON.stringify(course));
       this.courseSubject.next(course);
