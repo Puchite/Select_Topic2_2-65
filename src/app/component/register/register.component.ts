@@ -14,20 +14,19 @@ export class RegisterComponent implements OnInit {
   course!:any;
   courseData:any;
   elementData!:any;
-  displayedColumns = ['select', 'Course_ID', 'Course_Name', 'Course_Credit'];
-  dataSource = new MatTableDataSource<Course>(this.elementData);
-  selection = new SelectionModel<Course>(true, []);
 
+  displayedColumns = ['select', 'Course_ID', 'Course_Name', 'Course_Credit'];
+  dataSource = new MatTableDataSource<any>(this.elementData);
+  selection = new SelectionModel<any>(true, []);
 
   constructor(private userservice: UserService) {
     this.course = this.userservice.courseValue;
-    console.log("local storage('course')",localStorage.getItem('course'));
-    // this.courseData = this.course.reduce(
-    //   (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
-    // )
+    this.courseData = this.course.reduce(
+      (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
+    )
+
     this.elementData = this.course;
-    console.log("course ",this.elementData);
-    console.log("course_ID ",this.elementData.Course_ID);
+    console.log("course ",this.elementData[0]);
 
   }
 
@@ -48,7 +47,6 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("element is ",this.elementData);
   }
 
 }

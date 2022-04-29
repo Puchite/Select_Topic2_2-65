@@ -19,22 +19,22 @@
       </mat-cell>
     </ng-container>
 
-
     <ng-container matColumnDef="Course_ID">
       <mat-header-cell *matHeaderCellDef> Course_ID </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_ID}} </mat-cell>
+      <!-- <mat-cell *matCellDef="let elementData"> {{elementData[0].Course_ID}}</mat-cell> -->
+      <mat-cell *matCellDef="let elementData;">{{elementData.Course_ID}}</mat-cell>
     </ng-container>
 
 
     <ng-container matColumnDef="Course_Name">
       <mat-header-cell *matHeaderCellDef> Course_Name </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_Name}} </mat-cell>
+      <mat-cell *matCellDef="let elementData;"> {{elementData.Course_Name}} </mat-cell>
     </ng-container>
 
 
     <ng-container matColumnDef="Course_Credit">
       <mat-header-cell *matHeaderCellDef> Course_Credit </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_Credit}} </mat-cell>
+      <mat-cell *matCellDef="let elementData;"> {{elementData.Course_Credit}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
