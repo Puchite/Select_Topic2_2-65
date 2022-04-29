@@ -1,50 +1,20 @@
 <h2>ลงทะเบียนเรียน</h2>
 
 <div class="table">
-  <mat-table #table [dataSource]="dataSource">
-
-    <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()">
-        </mat-checkbox>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="Course_ID">
-      <mat-header-cell *matHeaderCellDef> Course_ID </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_ID}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="Course_Name">
-      <mat-header-cell *matHeaderCellDef> Course_Name </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_Name}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="Course_Credit">
-      <mat-header-cell *matHeaderCellDef> Course_Credit </mat-header-cell>
-      <mat-cell *matCellDef="let elementData"> {{elementData.Course_Credit}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-             (click)="selection.toggle(row)">
-    </mat-row>
-  </mat-table>
+  <table>
+    <thead>
+      <tr>
+        <th> </th>
+        <th> Course_ID </th>
+        <th> Course_Name </th>
+        <th> Course_Credit </th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of courseData">
+      <input id="{{item.Course_ID}}" type="checkbox" (click)="GetData(item.Course_ID)"/>
+      <th> {{ item.Course_ID }} </th>
+      <th> {{ item.Course_Name }} </th>
+      <th> {{ item.Course_Credit }} </th>
+    </tbody>
+  </table>
 </div>
-
-
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->
