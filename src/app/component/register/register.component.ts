@@ -23,6 +23,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userservice: UserService) {
     this.course = this.userservice.courseValue;
+<<<<<<< HEAD
+    this.courseData = this.course.reduce(
+      (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
+    )
+    this.elementData = this.courseData;
+    console.log("course ",this.elementData);
+    console.log("course_ID ",this.elementData.Course_ID);
+
+=======
     console.log("local storage('course')",localStorage.getItem('course'));
     // this.courseData = this.course.reduce(
     //   (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
@@ -32,6 +41,7 @@ export class RegisterComponent implements OnInit {
     // this.elementData = this.courseData;
     console.log(this.courseData);
     // console.log(typeof(localStorage.getItem('course')));
+>>>>>>> 126ed19973d920e5b06ce2ebbc032bec9e27edb2
   }
 
   isAllSelected()
@@ -49,6 +59,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
+
+=======
     // let Table = document.createElement('table');
     // let Header = document.createElement('tr');
 
@@ -73,6 +86,7 @@ export class RegisterComponent implements OnInit {
 
     //   Table.appendChild(Row);
     // })
+>>>>>>> 126ed19973d920e5b06ce2ebbc032bec9e27edb2
   }
 
   GetData(ID : string) : void {
