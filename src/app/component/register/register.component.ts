@@ -21,10 +21,11 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userservice: UserService) {
     this.course = this.userservice.courseValue;
-    this.courseData = this.course.reduce(
-      (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
-    )
-    this.elementData = this.courseData;
+    console.log("local storage('course')",localStorage.getItem('course'))
+    // this.courseData = this.course.reduce(
+    //   (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
+    // )
+    this.elementData = this.course;
     console.log("course ",this.elementData);
     console.log("course_ID ",this.elementData.Course_ID);
 
@@ -45,8 +46,9 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    console.log("element is ",this.elementData);
   }
 
 }
