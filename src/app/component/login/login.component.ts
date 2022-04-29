@@ -57,8 +57,9 @@ export class LoginComponent implements OnInit {
           if (this.userservice.state == true) {
             console.log("true")
             const returnUrl = this.route.snapshot.queryParams['/Home']
-            this.userservice.getCourse();
-            this.router.navigate(['/Home'])
+            this.userservice.getCourse().subscribe();
+
+            this.router.navigate(['/Home']);
           }
           else {
             this.state = "Incorrect username or password.Please try again."

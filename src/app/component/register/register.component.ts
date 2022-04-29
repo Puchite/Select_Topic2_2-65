@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userservice: UserService) {
     this.course = this.userservice.courseValue;
-    console.log("local storage('course')",localStorage.getItem('course'))
+    console.log("local storage('course')",localStorage.getItem('course'));
     // this.courseData = this.course.reduce(
     //   (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
     // )

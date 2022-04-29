@@ -54,13 +54,25 @@ export class UserService {
     }))
   }
 
+  logout()
+  {
+    localStorage.removeItem('user');
+    localStorage.removeItem('course');
+    this.userSubject.next(null!);
+    this.courseSubject.next(null!);
+    this.router.navigate(['']);
+  }
+
   getCourse()
   {
+    console.log(`${environment.apiUrl}/course`)
     return this.http.get<Course>(`${environment.apiUrl}/course`)
     .pipe(
       map(course => {
-      localStorage.setItem('course', JSON.stringify(course));
-      this.courseSubject.next(course);
+        console.log('Get course');
+        console.log(course);
+        localStorage.setItem('course', JSON.stringify(course));
+        this.courseSubject.next(course);
     }))
 
   }
