@@ -20,7 +20,7 @@ export class UserService {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(JSON.stringify(localStorage.getItem('user') || '{}')));
     this.user = this.userSubject.asObservable();
 
-    this.courseSubject = new BehaviorSubject<Course>(JSON.parse(localStorage.getItem('course') || '{}'));
+    this.courseSubject = new BehaviorSubject<Course>(JSON.parse(JSON.stringify(localStorage.getItem('course') || '{}')));
     this.course = this.courseSubject.asObservable();
   }
 
@@ -59,7 +59,7 @@ export class UserService {
     return this.http.get<Course>(`${environment.apiUrl}/course`)
     .pipe(
       map(course => {
-      localStorage.setItem('course', JSON.stringify(course))
+      localStorage.setItem('course', JSON.stringify(course));
       this.courseSubject.next(course);
     }))
 
