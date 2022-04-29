@@ -64,17 +64,6 @@ export class UserService {
   {
     console.log(`${environment.apiUrl}/course`);
     return this.http.get<Course>(`${environment.apiUrl}/course`)
-<<<<<<< HEAD
-    .pipe(
-
-      map(course => {
-      // console.log(JSON.stringify(course))
-
-      localStorage.setItem('course', JSON.stringify(course));
-      this.courseSubject.next(course);
-    }))
-
-=======
     .pipe(map
       (course =>
         {
@@ -83,6 +72,5 @@ export class UserService {
         }
       )
     )
->>>>>>> 126ed19973d920e5b06ce2ebbc032bec9e27edb2
   }
 }
