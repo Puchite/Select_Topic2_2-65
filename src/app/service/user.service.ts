@@ -34,11 +34,9 @@ export class UserService {
 
   login(username:string, password:string)
   {
-
     return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
     .pipe(
       map(user => {
-      console.log(typeof(user))
       if(typeof(user)==="object"){
         this.state=true;
         console.log("true")
@@ -48,20 +46,21 @@ export class UserService {
       else{
         console.log("false")
         this.state=false
-
       }
-
     }))
   }
 
   getCourse()
   {
+    console.log(`${environment.apiUrl}/course`);
     return this.http.get<Course>(`${environment.apiUrl}/course`)
-    .pipe(
-      map(course => {
-      localStorage.setItem('course', JSON.stringify(course));
-      this.courseSubject.next(course);
-    }))
-
+    .pipe(map
+      (course =>
+        {
+          localStorage.setItem('course', JSON.stringify(course));
+          this.courseSubject.next(course);
+        }
+      )
+    )
   }
 }
