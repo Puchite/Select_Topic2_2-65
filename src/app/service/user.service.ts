@@ -55,6 +55,15 @@ export class UserService {
     }))
   }
 
+  logout()
+  {
+    localStorage.removeItem('user');
+    localStorage.removeItem('course');
+    this.userSubject.next(null!);
+    this.courseSubject.next(null!);
+    this.router.navigate(['']);
+  }
+
   getCourse()
   {
     console.log(environment.apiUrl+"/course")
