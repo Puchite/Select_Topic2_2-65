@@ -55,9 +55,10 @@ export class LoginComponent implements OnInit {
         next: () => {
           // console.log("User valid")
           if (this.userservice.state == true) {
-            console.log("true")
+
             const returnUrl = this.route.snapshot.queryParams['/Home']
-            this.userservice.getCourse();
+            this.userservice.getCourse().subscribe();
+            console.log("true")
             this.router.navigate(['/Home'])
           }
           else {
