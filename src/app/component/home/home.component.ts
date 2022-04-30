@@ -4,7 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
-
+import {LoginComponent} from './../login/login.component'
+import {Router} from '@angular/router'
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,10 +20,10 @@ export class HomeComponent implements OnInit {
   user!: any;
   userData!: User;
   userlist: Array<User> = [];
-
+  status:boolean = true;
   Data: any;
 
-  constructor(private userservice: UserService) {
+  constructor(private userservice: UserService,private router:Router) {
     this.user = this.userservice.userValue;
     this.Data = JSON.parse(localStorage.getItem('user') || '{}').reduce(
       (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
@@ -42,7 +44,12 @@ export class HomeComponent implements OnInit {
 
   logout()
   {
+
     this.userservice.logout();
+    this.status=false;
+    this.router.navigate(["/Login"],{state:{data:this.status}})
+    console.log("test")
+
   }
 
 }

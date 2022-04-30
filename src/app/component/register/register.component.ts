@@ -11,7 +11,9 @@ import { map } from 'rxjs';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  date = new Date();
+  month = (new Date()).getMonth();
+  term:string="1";
   course!:any;
   courseData:any;
   elementData!:any;
@@ -32,6 +34,15 @@ export class RegisterComponent implements OnInit {
     // this.elementData = this.courseData;
     console.log(this.courseData);
     // console.log(typeof(localStorage.getItem('course')));
+    if(this.month>5&&this.month<11){
+      this.term="1"
+    }
+    else if(this.month==12||this.month<4){
+      this.term="2"
+    }
+    else{
+      this.term="ปิดเทอม"
+    }
   }
 
   isAllSelected()
