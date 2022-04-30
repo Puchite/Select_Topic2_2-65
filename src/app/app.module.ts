@@ -15,7 +15,7 @@ import { BioComponent } from './component/bio/bio.component';
 import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
     NoopAnimationsModule,
   ],
   providers: [
-
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

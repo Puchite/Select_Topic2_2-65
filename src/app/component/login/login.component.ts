@@ -6,8 +6,9 @@ import {ActivatedRoute, Router} from "@angular/router"
 import { UserService } from 'src/app/service/user.service';
 import {HttpClient} from '@angular/common/http'
 import { first } from 'rxjs/operators';
-
-
+import {LocationStrategy} from '@angular/common'
+import { HomeComponent } from '../home/home.component';
+// import {HomeComponent} from './../home/home.component'
 // import { LoginService } from '../Service/loginservice.service';
 @Component({
   selector: 'app-login',
@@ -20,13 +21,27 @@ export class LoginComponent implements OnInit {
   loginForms:Array<Loginf>  =[];
   Data:Array<any> =[];
   state:string =" ";
+  public statusback:boolean = true;
   constructor(
     private router:Router,
     private fb:FormBuilder,
     private loginservice:LoginService,
     private userservice:UserService,
     private http:HttpClient,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private location:LocationStrategy,
+    // private Home:HomeComponent
+    ) {
+      // console.log(history.state.data)
+
+    if (history.state.data==false) {
+      // console.log(history.state.data)
+      history.pushState(null, "null", window.location.href)
+      this.location.onPopState(() => {
+        history.pushState(null, "null", window.location.href);
+      }
+      )
+    }
     this.logindata = new Loginf("6204062616103","1129700214653")
     this.loginForm = this.fb.group({
       Username: [''],
@@ -36,7 +51,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    try{
+      console.log(history.state.data)
+    }
+    catch (e){
+      console.warn(e)
+    }
   }
 
   onSubmit(f:FormGroup){
