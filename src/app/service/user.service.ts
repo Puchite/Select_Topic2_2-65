@@ -16,6 +16,8 @@ export class UserService {
   private courseSubject!: BehaviorSubject<Course>;
   public course: Observable<Course>;
 
+  //Role Student or Instuctor
+  public role!: string;
   constructor(private router:Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(JSON.stringify(localStorage.getItem('user') || '{}')));
     this.user = this.userSubject.asObservable();
@@ -32,14 +34,34 @@ export class UserService {
     return this.courseSubject.value;
   }
 
-  login(username:string, password:string)
+
+  login_as_student(username:string, password:string)
   {
     return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
     .pipe(
       map(user => {
       if(typeof(user)==="object"){
         this.state=true;
+        this.role='นักศึกษา';
+        localStorage.setItem('user', JSON.stringify(user));
+        // console.log(localStorage.getItem('user'))
+        this.userSubject.next(user);
+      }
+      else{
+        console.log("false")
+        this.state=false
+      }
+    }))
+  }
 
+  login_as_teacher(username:string, password:string)
+  {
+    return this.http.get<User>(`${environment.apiUrl}/instructor/${username}/${password}`)
+    .pipe(
+      map(user => {
+      if(typeof(user)==="object"){
+        this.state=true;
+        this.role='อาจารย์';
         localStorage.setItem('user', JSON.stringify(user));
         // console.log(localStorage.getItem('user'))
         this.userSubject.next(user);
