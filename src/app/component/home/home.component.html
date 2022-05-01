@@ -3,11 +3,12 @@
     <div class="header">
       <h1 >ระบบสาระสนเทศเพื่องานทะเบียนนักศึกษา</h1>
     </div>
-    <p class="header_text">ผู้ใช้งาน {{ this.Data.Name }} {{ dateTH }} ภาค/ปีการศึกษาปัจจุบัน {{ semester }} ภาค/ปีการศึกษาที่ทำงานอยู่ {{ semester }}</p>
+    <p class="header_text">ผู้ใช้งาน {{ this.Data.Name }} ตำแหน่ง {{roleUser}} {{ dateTH }} ภาค/ปีการศึกษาปัจจุบัน {{ semester }} ภาค/ปีการศึกษาที่ทำงานอยู่ {{ semester }}</p>
 
   </div>
 
-  <div class="nav">
+
+  <div class="nav" *ngIf="roleUser==='นักศึกษา'">
     <nav class="background_nav">
       <h3 class="head">การลงทะเบียนเรียน</h3>
       <div class="background_nav_text">
@@ -20,4 +21,16 @@
     </nav>
     <router-outlet></router-outlet>
   </div>
+</div>
+
+<div class="nav" *ngIf="roleUser==='อาจารย์'">
+  <nav class="background_nav">
+    <h3 class="head">ข้อมูล</h3>
+    <div class="background_nav_text">
+      <li><a routerLink="Edit-Course">แก้ไขวิชาเรียน</a></li>
+      <li><a routerLink="Edit-Grade">แก้ไขเกรดนักศึกษา</a></li>
+      <li><a (click)="logout()"  routerLink="">ออกจากระบบ</a></li>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
 </div>

@@ -1,4 +1,4 @@
-import { Course } from './../../models/course';
+import { Course } from '../../../models/course';
 import { UserService } from 'src/app/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';

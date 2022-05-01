@@ -22,9 +22,15 @@ export class HomeComponent implements OnInit {
   userlist: Array<User> = [];
   status:boolean = true;
   Data: any;
+  roleUser:any;
 
   constructor(private userservice: UserService,private router:Router) {
+    if(this.userservice.state === false)
+    {
+      this.router.navigate(['']);
+    }
     this.user = this.userservice.userValue;
+    this.roleUser = this.userservice.role;
     this.Data = JSON.parse(localStorage.getItem('user') || '{}').reduce(
       (obj: any, item: { tags: any; }) => Object.assign(obj, { [item.tags]: item.tags })
     )
