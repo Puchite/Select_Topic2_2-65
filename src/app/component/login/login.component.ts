@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
       }
       )
     }
-
+    this.logindata = this.fb.group({
+      Username: [''],
+      Password: ['']
+    })
+    
     this.loginForm = this.fb.group({
       Username: [''],
       Password: ['']
@@ -78,7 +82,7 @@ export class LoginComponent implements OnInit {
           if (this.userservice.state == true) {
 
             const returnUrl = this.route.snapshot.queryParams['/Home']
-            
+
             this.userservice.getCourse().subscribe();
             console.log("true")
             this.router.navigate(['/Home'])
