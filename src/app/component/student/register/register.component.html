@@ -11,11 +11,12 @@
       </tr>
     </thead>
     <tbody *ngFor="let item of courseData">
-      <input id="{{item.Course_ID}}" type="checkbox" (click)="GetData(item.Course_ID)"/>
+      <input id="{{item.Course_ID}}" type="checkbox" (change)="GetData($event,item.Course_ID)" />
       <th> {{ item.Course_ID }} </th>
       <th> {{ item.Course_Name }} </th>
       <th> {{ item.Course_Credit }} </th>
     </tbody>
   </table>
+  <button (click)="Onclick()">submit</button>
 </div>
 {{term}}

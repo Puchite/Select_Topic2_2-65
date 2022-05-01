@@ -2,9 +2,13 @@
 body{
   background-color:rgb(254, 236, 213);
 }
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet');
 
-html, body { height: 100%; }
+body, h1, h2, h3, h4, h5, h6,a {
+  font-family: 'Mitr', sans-seri !important;
+}
+/* html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
