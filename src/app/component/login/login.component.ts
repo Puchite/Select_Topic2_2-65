@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {Loginf} from "./loginf"
 import {ActivatedRoute, Router} from "@angular/router"
 import { UserService } from 'src/app/service/user.service';
 import {HttpClient} from '@angular/common/http'
@@ -15,12 +14,12 @@ import { HomeComponent } from '../home/home.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  logindata!: Loginf;
+  logindata!: any;
   loginForm!: FormGroup;
-  loginForms:Array<Loginf>  =[];
+  loginForms:Array<any>  =[];
   Data:Array<any> =[];
   state:string =" ";
-
+  role:string = " ";
   public statusback:boolean = true;
   constructor(
     private router:Router,
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
       }
       )
     }
-    this.logindata = new Loginf("6204062616103","1129700214653")
+
     this.loginForm = this.fb.group({
       Username: [''],
       Password: ['']

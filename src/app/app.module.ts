@@ -7,15 +7,18 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './component/home/home.component';
-import { RegisterComponent } from './component/register/register.component';
-import { DropComponent } from './component/drop/drop.component';
-import { CheckRegisterComponent } from './component/check-register/check-register.component';
+import { RegisterComponent } from './component/student/register/register.component';
+import { DropComponent } from './component/student/drop/drop.component';
+import { CheckRegisterComponent } from './component/student/check-register/check-register.component';
 import { HomeRoutingModule } from './component/home/home-routing.module';
-import { BioComponent } from './component/bio/bio.component';
+import { BioComponent } from './component/student/bio/bio.component';
 import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { CheckGradeComponent } from './component/student/check-grade/check-grade.component';
+import { EditGradeComponent } from './component/instructor/edit-grade/edit-grade.component';
+import { EditCourseComponent } from './component/instructor/edit-course/edit-course.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,10 @@ import { DatePipe } from '@angular/common';
     RegisterComponent,
     DropComponent,
     CheckRegisterComponent,
-    BioComponent
+    BioComponent,
+    CheckGradeComponent,
+    EditGradeComponent,
+    EditCourseComponent
   ],
   imports: [
     BrowserModule,
