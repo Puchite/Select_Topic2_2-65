@@ -1,6 +1,5 @@
-import { LoginService } from './../Service/loginservice.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Loginf} from "./loginf"
 import {ActivatedRoute, Router} from "@angular/router"
 import { UserService } from 'src/app/service/user.service';
@@ -21,11 +20,11 @@ export class LoginComponent implements OnInit {
   loginForms:Array<Loginf>  =[];
   Data:Array<any> =[];
   state:string =" ";
+
   public statusback:boolean = true;
   constructor(
     private router:Router,
     private fb:FormBuilder,
-    private loginservice:LoginService,
     private userservice:UserService,
     private http:HttpClient,
     private route: ActivatedRoute,
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
       Username: [''],
       Password: ['']
     })
-    this.loginForms = this.loginservice.getData()
+
   }
 
   ngOnInit(): void {
@@ -63,20 +62,42 @@ export class LoginComponent implements OnInit {
     this.logindata.username = f.get('Username')?.value
     this.logindata.password = f.get('Password')?.value
 
-
+    let regex = /\d/;
     // console.log(this.Data)
-    if(f.get('Username')?.value==""){
+    if(f.get('Username')?.value=="" || null){
       this.state = "please enter your username"
     }
-    else if (f.get('Password')?.value == "") {
+    else if (f.get('Password')?.value == "" || null) {
       this.state = "please enter your password"
-    } else {
-      this.userservice.login(this.logindata.username, this.logindata.password).pipe(first()).subscribe({
+    }
+
+    if (this.logindata.username.match("^[a-zA-Z]+$"))
+    {
+      console.log("Tearcher")
+      this.userservice.login_as_teacher(this.logindata.username,this.logindata.password).pipe(first()).subscribe({
+        next: () => {
+          if (this.userservice.state == true) {
+
+            const returnUrl = this.route.snapshot.queryParams['/Home']
+            
+            this.userservice.getCourse().subscribe();
+            console.log("true")
+            this.router.navigate(['/Home'])
+          }
+          else {
+            this.state = "Incorrect username or password.Please try again."
+          }
+        }
+      })
+    }
+    else {
+      this.userservice.login_as_student(this.logindata.username, this.logindata.password).pipe(first()).subscribe({
         next: () => {
           // console.log("User valid")
           if (this.userservice.state == true) {
 
             const returnUrl = this.route.snapshot.queryParams['/Home']
+
             this.userservice.getCourse().subscribe();
             console.log("true")
             this.router.navigate(['/Home'])

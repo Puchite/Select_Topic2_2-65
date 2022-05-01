@@ -13,6 +13,7 @@ export class BioComponent implements OnInit {
 
 
   constructor(private userservice: UserService) {
+
     this.user = this.userservice.userValue;
     this.Data = JSON.parse(localStorage.getItem('user') || '{}').reduce(
       (obj: any, item: { Student_ID: any; }) => Object.assign(obj, { [item.Student_ID]: item.Student_ID })
