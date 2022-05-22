@@ -1,3 +1,4 @@
+import { ViewCourseComponent } from './../instructor/view-course/view-course.component';
 import { EditGradeComponent } from './../instructor/edit-grade/edit-grade.component';
 import { EditCourseComponent } from './../instructor/edit-course/edit-course.component';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'Bio', component:BioComponent },
 
       //instuctor
+      { path: 'View-Course', component:ViewCourseComponent },
       { path: 'Edit-Course', component:EditCourseComponent },
       { path: 'Edit-Grade', component:EditGradeComponent },
     ]

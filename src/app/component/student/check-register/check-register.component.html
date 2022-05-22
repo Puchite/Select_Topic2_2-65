@@ -1,1 +1,31 @@
 <h2>ผลการลงทะเบียน</h2>
+
+
+  <div class="select-div">
+    <div class="select">
+      <select ngModel="selectSemesterForm" (change)="changeSemeter($event)">
+        <option *ngFor="let index of optionForm">{{index}}</option>
+      </select>
+    </div>
+
+    <h2>เทอม/ปีการศึกษาที่เลือก {{selectSemeter}}</h2>
+  </div>
+
+
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th> </th>
+          <th> Course_ID </th>
+          <th> Course_Name </th>
+          <th> Section </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of registerData">
+        <th> {{ item.Course_ID }} </th>
+        <th> {{ item.Course_Name }} </th>
+        <th> {{ item.Section }} </th>
+      </tbody>
+    </table>
+  </div>

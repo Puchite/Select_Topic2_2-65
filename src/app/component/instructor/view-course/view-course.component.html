@@ -1,0 +1,26 @@
+<p>view-course works!</p>
+
+
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th> </th>
+        <th> Instructor_ID </th>
+        <th> Course_ID </th>
+        <th> Course_Name </th>
+        <th> Section </th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of this.courseData">
+      <th> {{ item.Instructor_ID}} </th>
+      <th> {{ item.Course_ID }} </th>
+      <th> {{ item.Course_Name }} </th>
+      <th> {{ item.Section }} </th>
+    </tbody>
+  </table>
+</div>
+{{courseData}}
+
+
+
