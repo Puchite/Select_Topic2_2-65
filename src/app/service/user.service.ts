@@ -34,7 +34,9 @@ export class UserService {
     return this.courseSubject.value;
   }
 
-
+  checkregister(student_ID:string,Course_ID:string){
+    return this.http.get(`${environment.apiUrl}/register/${student_ID}/${Course_ID}`)
+  }
   login_as_student(username:string, password:string)
   {
     return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
