@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
       Username: [''],
       Password: ['']
     })
-    
+
     this.loginForm = this.fb.group({
-      Username: [''],
-      Password: ['']
+      Username: ['6204062616049'],
+      Password: ['1209601318395']
     })
 
   }
