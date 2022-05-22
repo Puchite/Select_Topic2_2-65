@@ -1,3 +1,5 @@
+import { InstructorCourse } from './../models/instructorCourse';
+import { RegisterResult } from './../models/registerResult';
 import { User } from './../models/user';
 import { Register } from '../models/register';
 import { Course } from '../models/course';
@@ -6,16 +8,32 @@ import { Router } from '@angular/router';
 import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+<<<<<<< HEAD
+=======
+import { AuthInterceptor } from '../interceptor/auth.interceptor';
+
+>>>>>>> b16df99f164a88721e42ad1dde4d7eab2fef2161
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+<<<<<<< HEAD
   public regis!: Observable<Register>;
+=======
+
+>>>>>>> b16df99f164a88721e42ad1dde4d7eab2fef2161
   public state:Boolean=false;
+
   private courseSubject!: BehaviorSubject<Course>;
   public course: Observable<Course>;
+
+  private registerResultSubject: BehaviorSubject<RegisterResult>;
+  public registerResult!: Observable<RegisterResult>;
+
+  private instructorCourseSubject: BehaviorSubject<InstructorCourse>;
+  public instructorCourse: Observable<InstructorCourse>;
 
   //Role Student or Instuctor
   public role!: string;
@@ -25,6 +43,12 @@ export class UserService {
 
     this.courseSubject = new BehaviorSubject<Course>(JSON.parse(JSON.stringify(localStorage.getItem('course') || '{}')));
     this.course = this.courseSubject.asObservable();
+
+    this.registerResultSubject = new BehaviorSubject<RegisterResult>(JSON.parse(JSON.stringify(localStorage.getItem('registerResult') || '{}')));
+    this.registerResult = this.registerResultSubject.asObservable();
+
+    this.instructorCourseSubject = new BehaviorSubject<InstructorCourse>(JSON.parse(JSON.stringify(localStorage.getItem('instructorCourse') || '{}')));
+    this.instructorCourse = this.instructorCourseSubject.asObservable();
   }
 
   public get userValue(): User{
@@ -41,12 +65,14 @@ export class UserService {
   checkregister(student_ID:string,Course_ID:string){
     return this.http.get(`${environment.apiUrl}/register/${student_ID}/${Course_ID}`)
   }
+
   login_as_student(username:string, password:string)
   {
-    return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
+    return this.http.get<User>(`${environment.apiUrl}/userdata/login/${username}/${password}`)
     .pipe(
       map(user => {
       if(typeof(user)==="object"){
+
         this.state=true;
         this.role='นักศึกษา';
         localStorage.setItem('user', JSON.stringify(user));
@@ -58,6 +84,7 @@ export class UserService {
         this.state=false
       }
     }))
+
   }
 
   login_as_teacher(username:string, password:string)
@@ -83,8 +110,14 @@ export class UserService {
   {
     localStorage.removeItem('user');
     localStorage.removeItem('course');
+    localStorage.removeItem('registerResult');
+    localStorage.removeItem('instructorCourse');
+
     this.userSubject.next(null!);
     this.courseSubject.next(null!);
+    this.registerResultSubject.next(null!);
+    this.instructorCourseSubject.next(null!);
+
     this.router.navigate(['']);
   }
 
@@ -100,5 +133,32 @@ export class UserService {
         }
       )
     )
+  }
+
+  getRegisterResult(student_id:string, year: string, semester: string)
+  {
+    console.log(`${environment.apiUrl}/register/RegisterResult/${student_id}/${year}/${semester}`)
+    return this.http.get<RegisterResult>(`${environment.apiUrl}/register/RegisterResult/${student_id}/${year}/${semester}`)
+
+    //   .pipe(map
+    //     (registerResult => {
+    //       localStorage.setItem('registerResult', JSON.stringify(registerResult));
+    //       this.registerResultSubject.next(registerResult);
+    //     }
+    //   )
+    // )
+  }
+
+  getInstructorCourse(instructor_id:string, password:string)
+  {
+    console.log(`${environment.apiUrl}/instructor/AllSubject/${instructor_id}/${password}`)
+    return this.http.get<InstructorCourse>(`${environment.apiUrl}/instructor/AllSubject/${instructor_id}/${password}`)
+      .pipe(map
+          (courseData => {
+            localStorage.setItem('instructorCourse', JSON.stringify(courseData));
+            this.instructorCourseSubject.next(courseData);
+          })
+        )
+
   }
 }

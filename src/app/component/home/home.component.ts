@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   status:boolean = true;
   Data: any;
   roleUser:any;
+  term:any;
 
   constructor(private userservice: UserService,private router:Router) {
     if(this.userservice.state === false)
@@ -46,6 +47,9 @@ export class HomeComponent implements OnInit {
       day: 'numeric',
       weekday: "long"
     })
+
+
+
   }
 
   logout()

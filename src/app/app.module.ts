@@ -1,3 +1,4 @@
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,7 +45,12 @@ import { EditCourseComponent } from './component/instructor/edit-course/edit-cou
     NoopAnimationsModule,
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
