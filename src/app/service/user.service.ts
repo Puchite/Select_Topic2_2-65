@@ -8,22 +8,13 @@ import { Router } from '@angular/router';
 import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-<<<<<<< HEAD
-=======
-import { AuthInterceptor } from '../interceptor/auth.interceptor';
-
->>>>>>> b16df99f164a88721e42ad1dde4d7eab2fef2161
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
-<<<<<<< HEAD
   public regis!: Observable<Register>;
-=======
-
->>>>>>> b16df99f164a88721e42ad1dde4d7eab2fef2161
   public state:Boolean=false;
 
   private courseSubject!: BehaviorSubject<Course>;
