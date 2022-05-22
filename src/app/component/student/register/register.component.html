@@ -15,8 +15,8 @@
       <th> {{ item.Course_ID }} </th>
       <th> {{ item.Course_Name }} </th>
       <th>
-        <select (change)="selectsec($event)">
-          <option id="{{x}}" *ngFor="let x of item.Section" value={{x}}>{{x}}</option>
+        <select [ngModel]="Datatouse[item.Course_ID]" (ngModelChange)="selectsec($event,item.Course_ID)" >
+          <option id="{{x}}" *ngFor="let x of item.Section"  value={{x}}>{{x}}</option>
         </select>
       </th>
     </tbody>
