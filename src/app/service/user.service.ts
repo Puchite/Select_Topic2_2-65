@@ -1,17 +1,18 @@
 import { User } from './../models/user';
+import { Register } from '../models/register';
 import { Course } from '../models/course';
 import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+  public regis!: Observable<Register>;
   public state:Boolean=false;
   private courseSubject!: BehaviorSubject<Course>;
   public course: Observable<Course>;
@@ -33,7 +34,10 @@ export class UserService {
   public get courseValue(): Course{
     return this.courseSubject.value;
   }
-
+  register(Data:Register){
+    console.log(Data)
+    return this.http.post(`${environment.apiUrl}/register`,Data)
+  }
   checkregister(student_ID:string,Course_ID:string){
     return this.http.get(`${environment.apiUrl}/register/${student_ID}/${Course_ID}`)
   }

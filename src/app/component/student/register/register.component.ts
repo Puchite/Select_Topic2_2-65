@@ -1,10 +1,10 @@
 import { Course } from '../../../models/course';
 import { UserService } from 'src/app/service/user.service';
+import { Register } from 'src/app/models/register';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { map } from 'rxjs';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
   Data:any;
   DataTable : any = document.querySelector('#table');
   Datatouse:any={}
-
+  errors:any
+  Check:any|undefined;
   coursebyyears(element: any,index: any,array: any){
     console.log(this.Data)
     return element <=this.Data.Years
@@ -65,8 +66,8 @@ export class RegisterComponent implements OnInit {
       }
 
     }
-    console.log(temp)
-    console.log(section)
+    // console.log(temp)
+    // console.log(section)
 
     this.courseData = temp
 
@@ -145,9 +146,32 @@ export class RegisterComponent implements OnInit {
         let error:any
         console.log("test")
         this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe(response=>{
-          console.log(response)
+          this.Check = {...response}
         })
-        console.log(datas)
+        // console.log(this.Check)
+        // console.log(this.Data)
+        let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1)),Semester:Number(this.term),Grade:0}
+        console.log(PrepareD)
+        // console.log(JSON.stringify(this.date).split('-')[0].slice(1))
+        let er = false
+        this.userservice.register(PrepareD).subscribe(
+          result => {
+            // Handle result
+            console.log(result)
+          },
+          error => {
+            this.errors= true
+            console.log(error);
+          },
+          () => {
+            // No errors, route to new page
+            console.log("test")
+          }
+        )
+        console.log(this.errors)
+        if(this.errors){
+          console.log("test")
+        }
         // if(this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe()){
         //   console.log(this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe().next)
         // }
