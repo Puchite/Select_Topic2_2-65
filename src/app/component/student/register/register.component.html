@@ -7,16 +7,20 @@
         <th> </th>
         <th> Course_ID </th>
         <th> Course_Name </th>
-        <th> Course_Credit </th>
+        <th> Section </th>
       </tr>
     </thead>
     <tbody *ngFor="let item of courseData">
       <input id="{{item.Course_ID}}" type="checkbox" (change)="GetData($event,item.Course_ID)" />
       <th> {{ item.Course_ID }} </th>
       <th> {{ item.Course_Name }} </th>
-      <th> {{ item.Course_Credit }} </th>
+      <th>
+        <select (change)="selectsec($event)">
+          <option id="{{x}}" *ngFor="let x of item.Section" value={{x}}>{{x}}</option>
+        </select>
+      </th>
     </tbody>
   </table>
   <button (click)="Onclick()">submit</button>
 </div>
-{{term}}
+<!-- {{term}} -->
