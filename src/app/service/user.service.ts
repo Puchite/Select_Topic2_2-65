@@ -1,3 +1,5 @@
+import { InstructorCourse } from './../models/instructorCourse';
+import { RegisterResult } from './../models/registerResult';
 import { User } from './../models/user';
 import { Course } from '../models/course';
 import { environment } from './../../environments/environment';
@@ -12,9 +14,17 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+
   public state:Boolean=false;
+
   private courseSubject!: BehaviorSubject<Course>;
   public course: Observable<Course>;
+
+  private registerResultSubject: BehaviorSubject<RegisterResult>;
+  public registerResult!: Observable<RegisterResult>;
+
+  private instructorCourseSubject: BehaviorSubject<InstructorCourse>;
+  public instructorCourse: Observable<InstructorCourse>;
 
   //Role Student or Instuctor
   public role!: string;
@@ -24,6 +34,12 @@ export class UserService {
 
     this.courseSubject = new BehaviorSubject<Course>(JSON.parse(JSON.stringify(localStorage.getItem('course') || '{}')));
     this.course = this.courseSubject.asObservable();
+
+    this.registerResultSubject = new BehaviorSubject<RegisterResult>(JSON.parse(JSON.stringify(localStorage.getItem('registerResult') || '{}')));
+    this.registerResult = this.registerResultSubject.asObservable();
+
+    this.instructorCourseSubject = new BehaviorSubject<InstructorCourse>(JSON.parse(JSON.stringify(localStorage.getItem('instructorCourse') || '{}')));
+    this.instructorCourse = this.instructorCourseSubject.asObservable();
   }
 
   public get userValue(): User{
@@ -34,6 +50,13 @@ export class UserService {
     return this.courseSubject.value;
   }
 
+  public get registerResultValue(): RegisterResult{
+    return this.registerResultSubject.value;
+  }
+
+  public get instructorCourseValue(): InstructorCourse{
+    return this.instructorCourseSubject.value;
+  }
 
   login_as_student(username:string, password:string)
   {
@@ -77,8 +100,14 @@ export class UserService {
   {
     localStorage.removeItem('user');
     localStorage.removeItem('course');
+    localStorage.removeItem('registerResult');
+    localStorage.removeItem('instructorCourse');
+
     this.userSubject.next(null!);
     this.courseSubject.next(null!);
+    this.registerResultSubject.next(null!);
+    this.instructorCourseSubject.next(null!);
+
     this.router.navigate(['']);
   }
 
@@ -94,5 +123,32 @@ export class UserService {
         }
       )
     )
+  }
+
+  getRegisterResult(student_id:string, year: string, semester: string)
+  {
+    console.log(`${environment.apiUrl}/register/RegisterResult/${student_id}/${year}/${semester}`)
+    return this.http.get<RegisterResult>(`${environment.apiUrl}/register/RegisterResult/${student_id}/${year}/${semester}`)
+
+    //   .pipe(map
+    //     (registerResult => {
+    //       localStorage.setItem('registerResult', JSON.stringify(registerResult));
+    //       this.registerResultSubject.next(registerResult);
+    //     }
+    //   )
+    // )
+  }
+
+  getInstructorCourse(instructor_id:string, password:string)
+  {
+    console.log(`${environment.apiUrl}/instructor/AllSubject/${instructor_id}/${password}`)
+    return this.http.get<InstructorCourse>(`${environment.apiUrl}/instructor/AllSubject/${instructor_id}/${password}`)
+      .pipe(map
+          (courseData => {
+            localStorage.setItem('instructorCourse', JSON.stringify(courseData));
+            this.instructorCourseSubject.next(courseData);
+          })
+        )
+
   }
 }
