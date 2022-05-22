@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   selection = new SelectionModel<Course>(true, []);
   Data:any;
   DataTable : any = document.querySelector('#table');
-
+  Datatouse:any=[]
 
   coursebyyears(element: any,index: any,array: any){
     console.log(this.Data)
@@ -44,9 +44,43 @@ export class RegisterComponent implements OnInit {
     this.courseData = this.courseData.filter(
       (item:any)=> item.Semester==this.term
     )
+    let temp:any = []
+    let tempname:any = []
+    let section:any =[]
+    // console.log(this.courseData)
+    // console.log(this.courseData[0])
+    for(let i in this.courseData){
+      // console.log(this.courseData[i])
+      // console.log(this.courseData[i].Course_ID)
+      // console.log(tempname.indexOf(this.courseData[i].Course_ID))
+      if(tempname.indexOf(this.courseData[i].Course_ID)==-1){
+        // console.log(this.courseData[i])
+        temp.push(this.courseData[i])
+        tempname.push(this.courseData[i].Course_ID)
+        section.push({sec:[this.courseData[i].Section]})
+      }
+      else{
+
+        section[tempname.indexOf(this.courseData[i].Course_ID)].sec.push(this.courseData[i].Section)
+      }
+
+    }
+    console.log(temp)
+    console.log(section)
+
+    this.courseData = temp
+
+    for(let i in this.courseData){
+      this.courseData[i].Section = section[i].sec.sort()
+    }
     console.log(this.courseData)
+    this.Datatouse= this.courseData.map((i: any)=>{
+      return {Course_ID:i.Course_ID,Section:1}
+    })
+    console.log(this.Datatouse)
+    // console.log(this.courseData[0].Section)
      //MockData for testing
-    this.term="1"
+    // this.term="2"
     //*******ห้ามลบ ********//
     // if(this.month>5&&this.month<11){
     //   this.term="1"
@@ -79,7 +113,7 @@ export class RegisterComponent implements OnInit {
   //   for(let i = 0 ;i<)
   // }
   GetData(event :any,ID : string) : void {
-    // console.log(event.target.checked)
+    console.log(event.target.checked)
     if(event.target.checked&&!this.ID_register.includes(ID)){
       // console.log(this.ID_register.indexOf(ID))
       this.ID_register.push(ID)
@@ -88,7 +122,14 @@ export class RegisterComponent implements OnInit {
       this.ID_register.splice(this.ID_register.indexOf(ID))
     }
   }
+  selectsec(event:any){
+    console.log(event)
+  }
   Onclick(){
-    console.log(this.ID_register)
+    for(let i = 0;i<this.ID_register.length;i++){
+      // console.log(this.Data)
+      console.log(this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe())
+    }
+    // console.log(this.ID_register)
   }
 }

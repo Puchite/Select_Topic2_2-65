@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { AuthInterceptor } from '../interceptor/auth.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -50,20 +51,17 @@ export class UserService {
     return this.courseSubject.value;
   }
 
-  public get registerResultValue(): RegisterResult{
-    return this.registerResultSubject.value;
-  }
-
-  public get instructorCourseValue(): InstructorCourse{
-    return this.instructorCourseSubject.value;
+  checkregister(student_ID:string,Course_ID:string){
+    return this.http.get(`${environment.apiUrl}/register/${student_ID}/${Course_ID}`)
   }
 
   login_as_student(username:string, password:string)
   {
-    return this.http.get<User>(`${environment.apiUrl}/userdata/${username}/${password}`)
+    return this.http.get<User>(`${environment.apiUrl}/userdata/login/${username}/${password}`)
     .pipe(
       map(user => {
       if(typeof(user)==="object"){
+
         this.state=true;
         this.role='นักศึกษา';
         localStorage.setItem('user', JSON.stringify(user));
@@ -75,6 +73,7 @@ export class UserService {
         this.state=false
       }
     }))
+
   }
 
   login_as_teacher(username:string, password:string)

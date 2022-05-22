@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http'
 import { first } from 'rxjs/operators';
 import {LocationStrategy} from '@angular/common'
 import { HomeComponent } from '../home/home.component';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 // import {HomeComponent} from './../home/home.component'
 // import { LoginService } from '../Service/loginservice.service';
 @Component({
@@ -78,12 +79,13 @@ export class LoginComponent implements OnInit {
     {
       console.log("Tearcher")
       this.userservice.login_as_teacher(this.logindata.username,this.logindata.password).pipe(first()).subscribe({
-        next: () => {
+        next: (res: any) => {
           if (this.userservice.state == true) {
 
             const returnUrl = this.route.snapshot.queryParams['/Home']
 
             this.userservice.getCourse().subscribe();
+            this.userservice.getInstructorCourse(this.logindata.username, this.logindata.password).subscribe();
             console.log("true")
             this.router.navigate(['/Home'])
           }

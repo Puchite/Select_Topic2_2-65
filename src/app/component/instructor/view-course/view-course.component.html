@@ -12,7 +12,7 @@
         <th> Section </th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of courseData">
+    <tbody *ngFor="let item of this.courseData">
       <th> {{ item.Instructor_ID}} </th>
       <th> {{ item.Course_ID }} </th>
       <th> {{ item.Course_Name }} </th>
@@ -20,6 +20,7 @@
     </tbody>
   </table>
 </div>
+{{courseData}}
 
 
 

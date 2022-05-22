@@ -14,14 +14,12 @@ export class ViewCourseComponent implements OnInit {
 
   constructor(private userservice:UserService) {
     this.instructorData = JSON.parse(localStorage.getItem('user') || '{}')[0];
-    this.userservice.getInstructorCourse(this.instructorData.Instructor_ID, this.instructorData.Password);
+    this.courseData = JSON.parse(localStorage.getItem('instructorCourse') || '{}');
+
   }
 
   ngOnInit(): void {
-    this.courseData = JSON.parse(localStorage.getItem('instructorCourse') || '{}');
-    console.log(localStorage);
     console.log(this.courseData);
-
   }
 
 }
