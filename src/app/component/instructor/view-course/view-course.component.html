@@ -28,23 +28,21 @@
     <div class="form-input-div">
 
       <div class="form-year-box">
-        <label>ปีการศึกษา</label>
+        <label>ปีการศึกษา:</label>
         <input formControlName="year" type="text" placeholder="กรอกปีการศึกษา">
       </div>
 
       <div class="form-course_id-box">
-          <label>รหัสวิชา</label>
+          <label>รหัสวิชา:</label>
           <input formControlName="course_id" type="text" placeholder="กรอกรหัสวิชา">
       </div>
       <div class="form-section-box">
-        <label>ตอนเรียน</label>
+        <label>ตอนเรียน:</label>
         <input formControlName="section" type="text" placeholder="กรอกตอนเรียน">
       </div>
 
       <div class="button-submit">
-
-        <button (click)="onSubmit(submitform)" name="button" type="submit" value="submit">ดูรายชื่อนักศึกษา</button>
-
+        <button (click)="onSubmit(submitform)" name="button" type="submit" value="submit" class="btn-submit">ดูรายชื่อนักศึกษา</button>
       </div>
     </div>
 
