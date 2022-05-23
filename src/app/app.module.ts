@@ -1,3 +1,4 @@
+import { ViewCourseComponent } from './component/instructor/view-course/view-course.component';
 import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +32,8 @@ import { EditCourseComponent } from './component/instructor/edit-course/edit-cou
     BioComponent,
     CheckGradeComponent,
     EditGradeComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    ViewCourseComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,8 @@
     <div class="header">
       <h1 >ระบบสาระสนเทศเพื่องานทะเบียนนักศึกษา</h1>
     </div>
-    <p class="header_text">ผู้ใช้งาน {{ this.Data.Name }} ตำแหน่ง {{roleUser}} {{ dateTH }} ภาค/ปีการศึกษาปัจจุบัน {{term}}/{{ semester }} ภาค/ปีการศึกษาที่ทำงานอยู่ {{term}}/{{ semester }}</p>
+    <p *ngIf="roleUser==='นักศึกษา'" class="header_text">ผู้ใช้งาน {{ this.Data.Name }} ตำแหน่ง {{roleUser}} {{ dateTH }} ภาค/ปีการศึกษาปัจจุบัน {{term}}/{{ semester }} ภาค/ปีการศึกษาที่ทำงานอยู่ {{term}}/{{ semester }}</p>
+    <p *ngIf="roleUser==='อาจารย์'" class="header_text">ผู้ใช้งาน {{ this.Data.Name }} ตำแหน่ง {{roleUser}} {{ dateTH }} </p>
 
   </div>
 
