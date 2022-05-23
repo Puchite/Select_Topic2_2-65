@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { map } from 'rxjs';
+import {ActivatedRoute, Router} from "@angular/router"
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.Data)
     return element <=this.Data.Years
   }
-  constructor(private userservice: UserService) {
+  constructor(private userservice: UserService,private router:Router,) {
     this.course = this.userservice.courseValue;
     this.courseData = (JSON.parse(localStorage.getItem('course') || '{}'));
     this.Data = JSON.parse(localStorage.getItem('user') || '{}').reduce(
@@ -137,38 +138,46 @@ export class RegisterComponent implements OnInit {
   }
   Onclick(){
     for(let i = 0;i<this.ID_register.length;i++){
-      console.log(this.Datatouse[this.ID_register[i]])
+      // console.log(this.Datatouse[this.ID_register[i]])
       if(this.Datatouse[this.ID_register[i]]==0){
         alert("กรุณาเลือกตอนเรียน")
       }
       else{
         let datas:any
         let error:any
-        console.log("test")
-        this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe(response=>{
-          this.Check = {...response}
-        })
-        // console.log(this.Check)
-        // console.log(this.Data)
-        let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1)),Semester:Number(this.term),Grade:0}
-        console.log(PrepareD)
-        // console.log(JSON.stringify(this.date).split('-')[0].slice(1))
-        let er = false
-        this.userservice.register(PrepareD).subscribe(
+        // console.log("test")
+        this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe(
           result => {
-            // Handle result
-            console.log(result)
+            let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1)),Semester:Number(this.term),Grade:0}
+            this.userservice.register(PrepareD).subscribe(
+              result => {
+                alert("ลงทะเบียนสำเร็จ")
+                console.log(result)
+                this.router.navigate(['/Home'])
+              },
+              error => {
+                alert("มีบางอย่างผิดพลาดหรือเคยลงทะเบียนวิชานี้ไปแล้ว")
+              },
+              // () => {
+              //   // No errors, route to new page
+              //   console.log("test")
+              // }
+            )
+
           },
           error => {
-            this.errors= true
-            console.log(error);
+            // this.errors= true
+            alert(error.error.text);
           },
-          () => {
-            // No errors, route to new page
-            console.log("test")
-          }
+          // () => {
+          //   // No errors, route to new page
+          //   console.log("test")
+          // }
         )
-        console.log(this.errors)
+
+        let er = false
+
+        // console.log(this.errors)
         if(this.errors){
           console.log("test")
         }
