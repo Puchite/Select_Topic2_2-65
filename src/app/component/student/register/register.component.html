@@ -3,15 +3,15 @@
 <div class="table">
   <table>
     <thead>
-      <tr>
+      <tr class="head">
         <th> </th>
-        <th> Course_ID </th>
-        <th> Course_Name </th>
-        <th> Section </th>
+        <th> รหัสวิชา </th>
+        <th> ชื่อวิชา </th>
+        <th> ตอนเรียน </th>
       </tr>
     </thead>
     <tbody *ngFor="let item of courseData">
-      <input id="{{item.Course_ID}}" type="checkbox" (change)="GetData($event,item.Course_ID)" />
+      <th><input id="{{item.Course_ID}}" type="checkbox" (change)="GetData($event,item.Course_ID)" /></th>
       <th> {{ item.Course_ID }} </th>
       <th> {{ item.Course_Name }} </th>
       <th>
@@ -21,6 +21,9 @@
       </th>
     </tbody>
   </table>
-  <button (click)="Onclick()">submit</button>
+  <br/>
+  <div class="button-submit">
+    <button  (click)="Onclick()">submit</button>
+  </div>
 </div>
 <!-- {{term}} -->
