@@ -1,3 +1,65 @@
 table, th, td {
   border: 1px solid;
 }
+
+.table{
+  background-color: rgb(238, 178, 158);
+  padding: 30px;
+  margin:10px;
+  border-radius:10px;
+  margin-left:-150px;
+  width:fit-content;
+  box-shadow: 2px 2px 3px rgba(0,0,0,1);
+}
+
+.form-section-box,.form-course_id-box,.form-year-box{
+  display:flex;
+  flex-flow: row nowrap;
+  gap:2px;
+}
+
+.form-section-box label,.form-course_id-box label,.form-year-box label{
+  width:5rem;
+}
+
+
+
+/* CSS */
+ .btn-submit{
+  appearance: button;
+  background-color: rgb(238, 178, 158);
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  /* width: 100%; */
+  margin-left:20px;
+  width:fit-content;
+  gap:3px
+}
+
+.button-submit{
+  padding-top:20px
+}
+
