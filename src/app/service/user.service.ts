@@ -1,3 +1,4 @@
+import { Haved_regis } from './../models/haved_regis';
 import { InstructorCourse } from './../models/instructorCourse';
 import { RegisterResult } from './../models/registerResult';
 import { User } from './../models/user';
@@ -77,7 +78,10 @@ export class UserService {
     }))
 
   }
-
+  get_already_regis(student_ID:string):Observable<Haved_regis[]>{
+    return this.http.get<Haved_regis[]>(`${environment.apiUrl}/register/HaveRegister/Course/${student_ID}`)
+    // .pipe(map((data:any)=>{}))
+  }
   login_as_teacher(username:string, password:string)
   {
     return this.http.get<User>(`${environment.apiUrl}/instructor/${username}/${password}`)

@@ -1,3 +1,14 @@
-table, th, td {
+table, td {
   border: 1px solid;
+}
+th{
+  padding:12px;
+}
+.header{
+  background-color:darksalmon;
+}
+h2{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

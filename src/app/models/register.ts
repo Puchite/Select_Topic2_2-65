@@ -4,11 +4,11 @@ export class Register {
   Section:number;
   Year:string;
   Semester:number;
-  Grade:number;
+  Grade:any;
 
 
 
-  constructor(Student_ID:string,course_id:string, Section:number, Year:string,Semester:number,Grade:number)
+  constructor(Student_ID:string,course_id:string, Section:number, Year:string,Semester:number,Grade:any)
   {
     this.Student_ID = Student_ID;
     this.Course_ID = course_id;
