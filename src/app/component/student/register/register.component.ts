@@ -40,7 +40,11 @@ export class RegisterComponent implements OnInit {
       (obj: any, item: { Student_ID: any; }) => Object.assign(obj, { [item.Student_ID]: item.Student_ID })
     )
 
-
+    userservice.get_already_regis(this.Data.Student_ID).subscribe(
+      result=>{
+        this.temp_data(result)
+      }
+    )
     this.courseData = this.courseData.filter(
       (item:any)=> item.Years<=this.Data.Years||item.Years==0
     )
@@ -104,15 +108,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userservice.get_already_regis(this.Data.Student_ID).subscribe(
-      result=>{
-        this.temp_data(result)
-        console.log(result)
-      }
-    )
     console.log(this.Data2)
-    console.log(this.Data2)
-
   }
   // checkhave(id:string){
   //   for(let i = 0 ;i<)
@@ -133,10 +129,19 @@ export class RegisterComponent implements OnInit {
   }
   Onclick(){
     console.log(this.Data2)
+    let preventdata:any = []
+    this.Data2.map((d: any)=>{
+      if(d.Grade==null){
+        preventdata.push(d.Course_ID)
+      }
+    })
+    console.log(preventdata)
     for(let i = 0;i<this.ID_register.length;i++){
       // console.log(this.Datatouse[this.ID_register[i]])
+
       if(this.Datatouse[this.ID_register[i]]==0){
-        alert("กรุณาเลือกตอนเรียน")
+        alert("กรุณาเลือกตอนเรียนให้ครบ")
+        break;
       }
       else{
         let datas:any
@@ -144,11 +149,13 @@ export class RegisterComponent implements OnInit {
         // console.log(JSON.stringify(this.date).s)
         this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe(
           result => {
-            let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1))+543,Semester:Number(this.term),Grade:0}
+            let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1))+542,Semester:Number(this.term),Grade:null}
             this.userservice.register(PrepareD).subscribe(
               result => {
-                alert("ลงทะเบียนสำเร็จ")
-                console.log(result)
+                if(i==this.ID_register.length-1){
+                  alert("ลงทะเบียนสำเร็จ")
+                }
+                // console.log(result)
                 this.router.navigate(['/Home'])
               },
               error => {
