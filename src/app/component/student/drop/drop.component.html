@@ -1,2 +1,23 @@
 
 <h2>ถอนวิชาเรียน</h2>
+
+
+<div class="form">
+  <form class="form-input" [formGroup]="submitform">
+    <h3>กรอกรหัสวิชาที่ต้องการถอน</h3>
+    <div class="form-input-div">
+
+      <div class="form-course_id-box">
+          <label>รหัสวิชา</label>
+          <input formControlName="course_id" type="text" placeholder="กรอกรหัสวิชา">
+      </div>
+
+      <div class="button-submit">
+
+        <button (click)="onSubmit(submitform)" name="button" type="submit" value="submit">ถอนวิชาเรียน</button>
+
+      </div>
+    </div>
+
+  </form>
+</div>

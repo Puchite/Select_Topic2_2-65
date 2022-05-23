@@ -158,4 +158,9 @@ export class UserService {
     console.log(`${environment.apiUrl}/register/Student/Course/Sec/${year}/${course_id}/${section}`)
     return this.http.get<any>(`${environment.apiUrl}/register/Student/Course/Sec/${year}/${course_id}/${section}`);
   }
+
+  dropCourse(student_id:any, year:any, course_id:any)
+  {
+    return this.http.delete<any>(`${environment.apiUrl}/register/Drop/${student_id}/${year}/${course_id}`);
+  }
 }

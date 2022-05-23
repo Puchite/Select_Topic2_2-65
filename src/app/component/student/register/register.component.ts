@@ -148,7 +148,7 @@ export class RegisterComponent implements OnInit {
         // console.log("test")
         this.userservice.checkregister(this.Data.Student_ID,this.ID_register[i]).subscribe(
           result => {
-            let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1))+543,Semester:Number(this.term),Grade:0}
+            let PrepareD:Register ={Student_ID:this.Data.Student_ID,Course_ID:this.ID_register[i],Section:this.Datatouse[this.ID_register[i]],Year:JSON.parse(JSON.stringify(this.date).split('-')[0].slice(1))+542,Semester:Number(this.term),Grade:0}
             this.userservice.register(PrepareD).subscribe(
               result => {
                 alert("ลงทะเบียนสำเร็จ")

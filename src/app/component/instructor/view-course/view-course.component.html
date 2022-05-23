@@ -52,7 +52,7 @@
 </div>
 
 <div class="table-student">
-  <h2 *ngIf="studentList != undefined">รายชื่อนักศึกษาวิชา {{studentList[0].Course_Name}} ตอนเรียน {{studentList[0].Section}}</h2>
+  <h2 *ngIf="studentList != undefined ">รายชื่อนักศึกษาวิชา {{studentList[0].Course_Name}} ตอนเรียน {{studentList[0].Section}}</h2>
   <table *ngIf="studentList != undefined">
     <thead>
       <tr>
@@ -68,7 +68,7 @@
         <th> นามสกุล </th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of this.studentList">
+    <tbody *ngFor="let item of this.studentList" >
       <th> {{ item.Course_Name}} </th>
       <th> {{ item.Section }} </th>
       <th> {{ item.Student_ID }} </th>
