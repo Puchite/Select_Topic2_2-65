@@ -152,4 +152,10 @@ export class UserService {
         )
 
   }
+
+  getStudentListFromCourse(year:any, course_id:any, section:any)
+  {
+    console.log(`${environment.apiUrl}/register/Student/Course/Sec/${year}/${course_id}/${section}`)
+    return this.http.get<any>(`${environment.apiUrl}/register/Student/Course/Sec/${year}/${course_id}/${section}`);
+  }
 }

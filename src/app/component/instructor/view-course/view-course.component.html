@@ -1,15 +1,16 @@
-<p>view-course works!</p>
-
-
+<h1>ตรวจสอบวิชาที่สอน</h1>
 <div class="table">
   <table>
     <thead>
       <tr>
-        <th> </th>
-        <th> Instructor_ID </th>
+        <!-- <th> Instructor_ID </th>
         <th> Course_ID </th>
         <th> Course_Name </th>
-        <th> Section </th>
+        <th> Section </th> -->
+        <th> ผู้สอน </th>
+        <th> รหัสวิชา </th>
+        <th> ชื่อวิชา </th>
+        <th> ตอนเรียน </th>
       </tr>
     </thead>
     <tbody *ngFor="let item of this.courseData">
@@ -20,7 +21,64 @@
     </tbody>
   </table>
 </div>
-{{courseData}}
+
+<div class="form">
+  <form class="form-input" [formGroup]="submitform">
+    <h3>ตรวจสอบรายชื่อนักศึกษา</h3>
+    <div class="form-input-div">
+
+      <div class="form-year-box">
+        <label>ปีการศึกษา</label>
+        <input formControlName="year" type="text" placeholder="กรอกปีการศึกษา">
+      </div>
+
+      <div class="form-course_id-box">
+          <label>รหัสวิชา</label>
+          <input formControlName="course_id" type="text" placeholder="กรอกรหัสวิชา">
+      </div>
+      <div class="form-section-box">
+        <label>ตอนเรียน</label>
+        <input formControlName="section" type="text" placeholder="กรอกตอนเรียน">
+      </div>
+
+      <div class="button-submit">
+
+        <button (click)="onSubmit(submitform)" name="button" type="submit" value="submit">ดูรายชื่อนักศึกษา</button>
+
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="table-student">
+  <h2 *ngIf="studentList != undefined">รายชื่อนักศึกษาวิชา {{studentList[0].Course_Name}} ตอนเรียน {{studentList[0].Section}}</h2>
+  <table *ngIf="studentList != undefined">
+    <thead>
+      <tr>
+        <!-- <th> Course_Name </th>
+        <th> Section </th>
+        <th> Student_ID </th>
+        <th> Name </th>
+        <th> Surname </th> -->
+        <th> ชื่อวิชา </th>
+        <th> ตอนเรียน </th>
+        <th> รหัสนักศึกษา </th>
+        <th> ชื่อ </th>
+        <th> นามสกุล </th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of this.studentList">
+      <th> {{ item.Course_Name}} </th>
+      <th> {{ item.Section }} </th>
+      <th> {{ item.Student_ID }} </th>
+      <th> {{ item.Name }} </th>
+      <th> {{ item.Surname }} </th>
+    </tbody>
+  </table>
+</div>
+
+
 
 
 
