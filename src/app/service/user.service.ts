@@ -167,4 +167,16 @@ export class UserService {
   {
     return this.http.delete<any>(`${environment.apiUrl}/register/Drop/${student_id}/${year}/${course_id}`);
   }
+
+  loadSingleCourse(course_id: any)
+  {
+    return this.http.get<any>(`${environment.apiUrl}/course/${course_id}`);
+  }
+
+  changeCourse(course_id: any, course_name: any)
+  {
+    console.log(`${environment.apiUrl}/course/ChangeData/Course/${course_id}/${course_name}`)
+    return this.http.patch<any>(`${environment.apiUrl}/course/ChangeData/Course/${course_id}/${course_name}`,
+    {})
+  }
 }
