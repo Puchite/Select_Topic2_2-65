@@ -49,7 +49,7 @@
   </form>
 </div>
 
-<div class="table-student">
+<div class="table-student" *ngIf="check==true">
   <h2 *ngIf="studentList != undefined ">รายชื่อนักศึกษาวิชา {{studentList[0].Course_Name}} ตอนเรียน {{studentList[0].Section}}</h2>
   <table *ngIf="studentList != undefined">
     <thead>

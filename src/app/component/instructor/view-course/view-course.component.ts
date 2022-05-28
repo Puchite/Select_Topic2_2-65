@@ -15,7 +15,7 @@ export class ViewCourseComponent implements OnInit {
   form!: FormGroup;
   submitform: any;
   studentList:any;
-
+  check=false
 
   constructor(
     private userservice:UserService,
@@ -39,7 +39,7 @@ export class ViewCourseComponent implements OnInit {
     let year = f.get('year')?.value;
     let course_id = f.get('course_id')?.value;
     let section = f.get('section')?.value;
-
+    this.check=true
     // console.log(f.get('course_id')?.value, f.get('section')?.value, f.get('year')?.value);
 
     console.log("year: ",year," course_id: ",course_id, "section: ",section);

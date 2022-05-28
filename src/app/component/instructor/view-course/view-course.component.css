@@ -63,3 +63,12 @@ table, th, td {
   padding-top:20px
 }
 
+.table-student{
+  background-color: rgb(238, 178, 158);
+  padding: 30px;
+  margin:10px;
+  border-radius:10px;
+  margin-left:-150px;
+  width:fit-content;
+  box-shadow: 2px 2px 3px rgba(0,0,0,1);
+}
