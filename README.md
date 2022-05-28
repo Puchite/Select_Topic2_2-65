@@ -1,6 +1,15 @@
 # ProjectFinal
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+project angular 13 ส่วน frontend มี backend เป็น nestjs + SQLite พัฒนาโดยใช้ภาษา typescript
+
+โปรเจคดังกล่าวเป็นส่วนหนึ่งของวิชา 040613408 SELECTED TOPICS IN COMPUTER ปีที่ 3 เทอมที่ 2 ปีการศึกษา 2563 มหาวิทยาลัยพระจอมเกล้าพระนครเหนือ
+จัดทำโดย
+นายชีวเทพ เทศทองลา รหัสนักศึกษา 6204062616049
+นายธนธรณ์ อยู่เย็น รหัสนักศึกษา 6204062616057
+นายวชิรวิชญ์ คล้ายขาว รหัสนักศึกษา 6204062616103
+นายภูชิชย์ เสงี่ยมกิ่ง รหัสนักศึกษา 6204062616316
+
+<!-- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
 ## Development server
 
@@ -25,3 +34,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ -->
